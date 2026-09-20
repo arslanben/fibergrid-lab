@@ -1,0 +1,75 @@
+name: fibergrid-ctf
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-lds_gisdb}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres_lab_pw}
+      CBS_PASSWORD: ${CBS_PASSWORD:-cbs_lab_pw}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+      start_period: 90s
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+
+  app:
+    build: ./app
+    environment:
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: ${POSTGRES_DB:-lds_gisdb}
+      DB_USER: CBS
+      DB_PASSWORD: ${CBS_PASSWORD:-cbs_lab_pw}
+    networks:
+      - internal
+      - dmz
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/healthz')"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+
+  waf:
+    build: ./waf
+    environment:
+      UPSTREAM: http://app:8000
+    ports:
+      - "127.0.0.1:${LAB_PORT:-8080}:8080"
+    networks:
+      - dmz
+    depends_on:
+      app:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/healthz')"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  dmz:
+  internal:
+    internal: true
+
+volumes:
+  pgdata:

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ArcGIS REST Services Directory</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="arcgis-body">
+<div class="arcgis-header">
+  <div class="arcgis-title">ArcGIS REST Services Directory</div>
+  <div class="arcgis-sub">Home &gt; services{% if utilities %} &gt; Utilities{% endif %}</div>
+</div>
+<div class="arcgis-content">
+{% if utilities %}
+  <h2>Utilities</h2>
+  <ul class="arcgis-list">
+    <li><a href="/arcgis/rest/services/Utilities/PrintingTools?f=json">PrintingTools (GPServer)</a></li>
+  </ul>
+{% else %}
+  <h2>Services:</h2>
+  <ul class="arcgis-list">
+    <li><a href="/arcgis/rest/services/KAPSAMA_VEKTOR/MapServer?f=json">KAPSAMA_VEKTOR (MapServer)</a></li>
+  </ul>
+  <h2>Folders:</h2>
+  <ul class="arcgis-list">
+    <li><a href="/arcgis/rest/services/Utilities">Utilities</a></li>
+  </ul>
+{% endif %}
+  <p class="arcgis-foot">
+    Supported Operations: <a href="/arcgis/rest/services?f=json">JSON</a>
+  </p>
+  <p class="arcgis-copy">© Lodos Telekom A.Ş. · ArcGIS Server 10.8.1</p>
+</div>
+</body>
+</html>

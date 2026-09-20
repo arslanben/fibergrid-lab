@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Kurumsal Giriş{% endblock %}
+{% block content %}
+<div class="login-box">
+  <h1>Kurumsal Giriş</h1>
+  <p class="muted">FiberGrid GIS uygulamasına kurumsal dizin hesabınızla giriş yapın.</p>
+  {% if error %}<div class="alert">{{ error }}</div>{% endif %}
+  <form method="post" action="/login">
+    <label>Kullanıcı adı
+      <input type="text" name="username" autocomplete="username" required>
+    </label>
+    <label>Parola
+      <input type="password" name="password" autocomplete="current-password" required>
+    </label>
+    <button class="btn" type="submit">Giriş Yap</button>
+  </form>
+  <p class="muted small-note">
+    Erişim sorunları için Bilişim Servis Yönetimi ile iletişime geçin.
+  </p>
+</div>
+{% endblock %}

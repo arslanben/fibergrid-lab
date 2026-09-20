@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Genel Bakış{% endblock %}
+{% block content %}
+<h1>Kapsama İzleme Panosu</h1>
+<p class="muted">
+  KAPSAMA_VEKTOR yayın servisinden beslenen özet görünüm. Ayrıntılı veri için
+  ArcGIS REST servis dizinini kullanın.
+</p>
+
+<section class="cards">
+  <div class="card">
+    <span class="card-label">FWA Kapsama Noktası</span>
+    <span class="card-value" id="coverage-count">—</span>
+  </div>
+  <div class="card">
+    <span class="card-label">Yayınlanan Servis</span>
+    <span class="card-value small">KAPSAMA_VEKTOR</span>
+  </div>
+  <div class="card">
+    <span class="card-label">Katman</span>
+    <span class="card-value small">FWA_KAPSAMA</span>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <h2>Kapsama Noktaları</h2>
+    <label class="filter">
+      İl:
+      <select id="province-filter">
+        <option value="">Tümü</option>
+      </select>
+    </label>
+  </div>
+  <table id="coverage-table">
+    <thead>
+      <tr>
+        <th>İl</th><th>İlçe</th><th>Mahalle</th><th>Bant</th>
+        <th>Kapasite</th><th>Durum</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td colspan="6" class="muted">Yükleniyor…</td></tr>
+    </tbody>
+  </table>
+</section>
+{% endblock %}

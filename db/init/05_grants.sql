@@ -1,0 +1,12 @@
+-- FiberGrid CTF - grants and planner statistics.
+
+GRANT USAGE ON SCHEMA cbs  TO "CBS";
+GRANT USAGE ON SCHEMA sde TO "CBS";
+
+GRANT SELECT ON ALL TABLES    IN SCHEMA cbs  TO "CBS";
+GRANT SELECT ON ALL TABLES    IN SCHEMA sde TO "CBS";
+GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA cbs TO "CBS";
+
+ANALYZE sde.fwa_nokta_verisi;
+ANALYZE cbs.guzergah;
+ANALYZE cbs.a90312;

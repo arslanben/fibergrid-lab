@@ -1,0 +1,166 @@
+:root {
+  --bg: #0f1621;
+  --panel: #172233;
+  --panel-2: #1d2b40;
+  --line: #24344d;
+  --text: #e8eef7;
+  --muted: #8fa3bf;
+  --accent: #2dd4bf;
+  --accent-2: #38bdf8;
+  --danger: #f87171;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 14px 28px;
+  background: #0b111b;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand { display: flex; align-items: center; gap: 12px; }
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #06202a;
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+
+.brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+.brand-text strong { font-size: 15px; }
+.brand-text small { color: var(--muted); font-size: 12px; }
+
+.nav { display: flex; gap: 18px; flex: 1; }
+.nav a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 2px;
+  border-bottom: 2px solid transparent;
+}
+.nav a:hover { color: var(--text); }
+.nav a.active { color: var(--text); border-bottom-color: var(--accent); }
+
+.user { display: flex; align-items: center; gap: 12px; color: var(--muted); }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 28px 24px 60px; }
+
+h1 { font-size: 24px; margin: 0 0 8px; }
+h2 { font-size: 17px; margin: 0; }
+.muted { color: var(--muted); }
+.small-note { font-size: 12.5px; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 24px 0; }
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.card-label { color: var(--muted); font-size: 12.5px; text-transform: uppercase; letter-spacing: .6px; }
+.card-value { font-size: 28px; font-weight: 700; color: var(--accent); }
+.card-value.small { font-size: 18px; color: var(--text); }
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.panel-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+}
+.filter { color: var(--muted); font-size: 13px; display: flex; align-items: center; gap: 8px; }
+
+select, input {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 11px 20px; border-bottom: 1px solid var(--line); font-size: 14px; }
+th { color: var(--muted); font-weight: 600; font-size: 12.5px; text-transform: uppercase; letter-spacing: .5px; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: rgba(45, 212, 191, .04); }
+
+.btn {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #06202a;
+  font-weight: 700;
+  border: none;
+  border-radius: 9px;
+  padding: 10px 18px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn.ghost { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+
+.login-box {
+  max-width: 380px;
+  margin: 48px auto;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 28px;
+}
+.login-box h1 { margin-bottom: 6px; }
+.login-box form { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+.login-box label { display: flex; flex-direction: column; gap: 6px; color: var(--muted); font-size: 13px; }
+
+.alert {
+  background: rgba(248, 113, 113, .12);
+  border: 1px solid rgba(248, 113, 113, .4);
+  color: #fecaca;
+  border-radius: 9px;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  margin-top: 12px;
+}
+
+.footer {
+  display: flex; justify-content: space-between;
+  color: #5a6d88; font-size: 12.5px;
+  padding: 18px 28px;
+  border-top: 1px solid var(--line);
+}
+
+/* ArcGIS REST directory page (light theme, classic look) */
+.arcgis-body { background: #ffffff; color: #222; font-family: Verdana, Arial, sans-serif; font-size: 13px; }
+.arcgis-header { background: #365f91; color: #fff; padding: 12px 18px; }
+.arcgis-title { font-size: 18px; font-weight: bold; }
+.arcgis-sub { font-size: 12px; margin-top: 4px; opacity: .9; }
+.arcgis-content { padding: 18px 22px; }
+.arcgis-content h2 { color: #365f91; font-size: 15px; margin: 16px 0 6px; }
+.arcgis-list { margin: 0 0 6px 22px; padding: 0; }
+.arcgis-list a { color: #1a5fa8; text-decoration: none; }
+.arcgis-list a:hover { text-decoration: underline; }
+.arcgis-foot { margin-top: 22px; color: #555; }
+.arcgis-copy { margin-top: 26px; color: #888; font-size: 11.5px; }

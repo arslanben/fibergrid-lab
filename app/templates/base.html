@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Genel Bakış{% endblock %} · FiberGrid GIS</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%232dd4bf'/><text x='16' y='22' font-family='Arial' font-size='15' font-weight='bold' text-anchor='middle' fill='%2306202a'>FG</text></svg>">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">FG</span>
+    <span class="brand-text">
+      <strong>Lodos Telekom</strong>
+      <small>FiberGrid GIS</small>
+    </span>
+  </div>
+  <nav class="nav">
+    <a class="active" href="/">Genel Bakış</a>
+    <a href="/arcgis/rest/services">Servis Dizini</a>
+  </nav>
+  <div class="user">
+    <a class="btn ghost" href="/login">Kurumsal Giriş</a>
+  </div>
+</header>
+
+<main class="wrap">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+  <span>FiberGrid GIS v4.2.1 · Lodos Telekom A.Ş.</span>
+  <span>Yalnızca yetkili kullanım içindir.</span>
+</footer>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

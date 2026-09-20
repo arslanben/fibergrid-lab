@@ -1,0 +1,41 @@
+name: lab-ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  solve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build and start the lab
+        run: docker compose up -d --build
+
+      - name: Wait for the lab
+        run: |
+          for _ in $(seq 1 90); do
+            if curl -fsS http://localhost:8080/healthz >/dev/null 2>&1; then
+              echo "lab is up"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "lab did not become healthy"
+          docker compose logs --tail=150
+          exit 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install solver dependencies
+        run: pip install -r solve/requirements.txt
+
+      - name: Smoke tests
+        run: ./tests/smoke.sh
+
+      - name: Run the reference solver
+        run: python solve/solve.py

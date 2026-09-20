@@ -1,0 +1,10 @@
+# Debug override: exposes the app and database directly to the host.
+# Usage: docker compose -f docker-compose.yml -f docker-compose.debug.yml up -d
+# This is for lab maintenance only. Players should attack through the WAF (port 8080).
+services:
+  app:
+    ports:
+      - "127.0.0.1:8000:8000"
+  db:
+    ports:
+      - "127.0.0.1:5432:5432"

@@ -1,0 +1,6 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+app/exports/*.zip
+solve/__pycache__/

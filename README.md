@@ -52,8 +52,8 @@ Expect 2–4 hours for a first manual solve.
 Requirements: Docker with Compose v2, ~2 GB RAM, ~1 GB disk.
 
 ```bash
-git clone <your-fork-url> fibergrid-ctf
-cd fibergrid-ctf
+git clone https://github.com/arslanben/fibergrid-lab.git
+cd fibergrid-lab
 docker compose up -d --build
 ```
 

@@ -16,7 +16,7 @@ ps: ## Show container status
 	docker compose ps
 
 test: ## Run smoke tests against the running lab
-	./tests/smoke.sh
+	bash tests/smoke.sh
 
 solve: ## Run the automated solver (SPOILER)
 	python3 solve/solve.py

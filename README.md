@@ -179,4 +179,4 @@ here must only be used against systems you are authorized to test.
 
 ## License
 
-MIT — see `LICENSE`.
+MIT
